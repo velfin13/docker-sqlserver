@@ -3,14 +3,14 @@ version: '3.8'
 services:
   sqlserver:
     image: mcr.microsoft.com/mssql/server:2019-latest
-    env_file:
-      - .env
     ports:
       - "1433:1433"
     networks:
-      - ./sqlserver-network
+      - sqlserver-network
     volumes:
       - sqlserver-data:/var/opt/mssql
+    env_file:
+      - .env
 
 networks:
   sqlserver-network:
