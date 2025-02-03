@@ -2,19 +2,17 @@ version: '3.8'
 
 services:
   sqlserver:
-    image: mcr.microsoft.com/mssql/server:2019-latest
+    image: mcr.microsoft.com/mssql/server:latest
+    container_name: sqlserver
+    user: root
+    restart: always
     ports:
       - "1433:1433"
-    networks:
-      - sqlserver-network
     volumes:
-      - sqlserver-data:/var/opt/mssql
+      - ./data:/var/opt/mssql
     env_file:
       - .env
 
-networks:
-  sqlserver-network:
-    driver: bridge
-
 volumes:
-  sqlserver-data:
+  sqlserver_data:
+    driver: local
